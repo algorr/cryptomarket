@@ -1,6 +1,6 @@
 # cryptomarket
  
-CRYPTO MARKERT 
+CRYPTO MARKET 
 
 State Management:
 -Bloc(cubit)
