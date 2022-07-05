@@ -1,6 +1,6 @@
 # cryptomarket
  
-CRYPTO MARKET 
+CRYPTO MARKET with Bloc and Api
 
 State Management:
 -Bloc(cubit)
