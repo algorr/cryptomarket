@@ -1,3 +1,4 @@
+import 'package:cryptomarket/consts/crypto_card_consts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -19,11 +20,11 @@ class CryptoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final svg = imageUrl.endsWith('.svg');
     return Padding(
-      padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
+      padding: CryptoCardConsts.cardPadding,
       child: Container(
         height: 100,
         decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: CryptoCardConsts.cardColor,
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
@@ -46,7 +47,7 @@ class CryptoCard extends StatelessWidget {
               padding: const EdgeInsets.all(15.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
+                  color: CryptoCardConsts.cardColor,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -83,7 +84,7 @@ class CryptoCard extends StatelessWidget {
                     child: Text(
                       name,
                       style: TextStyle(
-                        color: Colors.grey[900],
+                        color: CryptoCardConsts.cardTextColor,
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
@@ -100,7 +101,7 @@ class CryptoCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: CryptoCardConsts.cardPriceColumnPadding,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -108,7 +109,7 @@ class CryptoCard extends StatelessWidget {
                   Text(
                     price.toDouble().toString(),
                     style: TextStyle(
-                      color: Colors.grey[900],
+                      color: CryptoCardConsts.cardTextColor,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),

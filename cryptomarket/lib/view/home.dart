@@ -1,3 +1,4 @@
+import 'package:cryptomarket/consts/home_consts.dart';
 import 'package:cryptomarket/viewmodel/cubit/coin_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +11,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: HomeConsts.homeScaffoldColor,
       appBar: AppBar(
-        title: const Text("Coins"),
+        backgroundColor: HomeConsts.homeAppbarColor,
+        title: Text(HomeConsts.appbarTitle),
         centerTitle: true,
       ),
       body: BlocBuilder<CoinCubit, CoinState>(
