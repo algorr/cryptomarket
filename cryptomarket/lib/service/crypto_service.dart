@@ -19,7 +19,7 @@ class CryptoService {
         throw Exception();
       }
     } catch (e) {
-      //print(e);
+      print(e.toString());
       throw Exception();
     }
   }
