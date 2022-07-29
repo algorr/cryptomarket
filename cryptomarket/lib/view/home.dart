@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
           // List<Coin> coinList = BlocProvider.of<CoinCubit>(context).coins;
           //bool isLoading = BlocProvider.of<CoinCubit>(context).isLoading;
           // print("ISLOADING : $isLoading");
-         return  StreamBuilder<dynamic>(
+          return StreamBuilder<dynamic>(
               stream: service.streamCoins(),
               builder: (context, snapshot) {
                 switch (snapshot.connectionState) {
@@ -42,7 +42,6 @@ class Home extends StatelessWidget {
                       return ListView.builder(
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
-                           
                             return CryptoCard(
                                 name: snapshot.data[index].name!,
                                 symbol: snapshot.data[index].symbol!,
@@ -56,9 +55,6 @@ class Home extends StatelessWidget {
                     }
                 }
               });
-          return Container(
-            color: Colors.green,
-          );
         },
       ),
     );

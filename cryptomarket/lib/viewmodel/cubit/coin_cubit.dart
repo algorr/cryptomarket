@@ -16,7 +16,6 @@ class CoinCubit extends Cubit<CoinState> {
       final coins = (await cryptoService.fetchData())!;
       if (coins.isNotEmpty) {
         emit(CoinLoadedState());
-        print(state);
       } else {
         emit(CoinErrorState());
       }
@@ -30,12 +29,10 @@ class CoinCubit extends Cubit<CoinState> {
   Future<List<Coin>?> refreshCoins() async {
     try {
       toogleLoading();
-      print(isLoading);
       Future.delayed(const Duration(seconds: 5));
       coins = (await cryptoService.fetchData())!;
       if (coins.isNotEmpty) {
         toogleLoading();
-        print(isLoading);
         return coins;
       } else {
         emit(CoinErrorState());

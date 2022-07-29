@@ -19,11 +19,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primarySwatch: Colors.amber,
-            primaryIconTheme: IconThemeData(color: Colors.transparent),
+            primaryIconTheme: const IconThemeData(color: Colors.transparent),
             appBarTheme: AppBarTheme(
                 color: HomeConsts.homeAppbarColor,
-                titleTextStyle: TextStyle(color: Colors.white, fontSize: 22),
-                actionsIconTheme: IconThemeData(color: Colors.white))),
+                titleTextStyle: const TextStyle(color: Colors.white, fontSize: 22),
+                actionsIconTheme: const IconThemeData(color: Colors.white))),
         home: BlocProvider(
           create: (context) => CoinCubit(
             RepositoryProvider.of<CryptoService>(context),

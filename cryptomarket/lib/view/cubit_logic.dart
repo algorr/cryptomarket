@@ -27,7 +27,6 @@ class _CubitLogicState extends State<CubitLogic> {
             service: CryptoService(),
           );
         } else if (state is CoinLoadedState) {
-          print("My State is : $state");
           return Home(service: CryptoService());
         }
         return Container(
