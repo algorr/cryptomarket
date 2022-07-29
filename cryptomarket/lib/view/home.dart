@@ -16,19 +16,10 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(HomeConsts.appbarTitle),
         centerTitle: true,
-        actions: [
-          ElevatedButton(
-              onPressed: () {
-                BlocProvider.of<CoinCubit>(context).refreshCoins();
-              },
-              child: const Icon(Icons.refresh_rounded))
-        ],
+        actions: const [RefreshButton()],
       ),
       body: BlocBuilder<CoinCubit, CoinState>(
         builder: (context, state) {
-          // List<Coin> coinList = BlocProvider.of<CoinCubit>(context).coins;
-          //bool isLoading = BlocProvider.of<CoinCubit>(context).isLoading;
-          // print("ISLOADING : $isLoading");
           return StreamBuilder<dynamic>(
               stream: service.streamCoins(),
               builder: (context, snapshot) {
@@ -58,5 +49,20 @@ class Home extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class RefreshButton extends StatelessWidget {
+  const RefreshButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          BlocProvider.of<CoinCubit>(context).refreshCoins();
+        },
+        child: const Icon(Icons.refresh_rounded));
   }
 }
