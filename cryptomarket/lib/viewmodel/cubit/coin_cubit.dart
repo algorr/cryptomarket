@@ -13,10 +13,10 @@ class CoinCubit extends Cubit<CoinState> {
   Future<List<Coin>?> fetchCoins() async {
     try {
       emit(CoinLoadingState());
-      coins = (await cryptoService.fetchData())!;
+      final coins = (await cryptoService.fetchData())!;
       if (coins.isNotEmpty) {
         emit(CoinLoadedState());
-        return coins;
+        print(state);
       } else {
         emit(CoinErrorState());
       }
@@ -48,7 +48,7 @@ class CoinCubit extends Cubit<CoinState> {
   }
 
   Future<void> serviceInit() async {
-    await cryptoService.fetchData();
+    cryptoService.streamCoins();
     await fetchCoins();
     emit(CoinInitial());
   }

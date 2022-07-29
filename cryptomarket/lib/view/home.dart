@@ -1,13 +1,13 @@
 import 'package:cryptomarket/consts/home_consts.dart';
+import 'package:cryptomarket/service/crypto_service.dart';
 import 'package:cryptomarket/viewmodel/cubit/coin_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
-import '../model/coin_model.dart';
 import '../widgets/crypto_card.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  final CryptoService service;
+  const Home({Key? key, required this.service}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,39 +26,39 @@ class Home extends StatelessWidget {
       ),
       body: BlocBuilder<CoinCubit, CoinState>(
         builder: (context, state) {
-          List<Coin> coinList = BlocProvider.of<CoinCubit>(context).coins;
-          bool isLoading = BlocProvider.of<CoinCubit>(context).isLoading;
-          print("ISLOADING : $isLoading");
-          return isLoading == false
-              ? ListView.builder(
-                  itemCount: coinList.length,
-                  itemBuilder: (context, index) {
-                    return CryptoCard(
-                        name: coinList[index].name,
-                        symbol: coinList[index].symbol,
-                        imageUrl: coinList[index].imageUrl,
-                        price: coinList[index].price);
-                  })
-              : Shimmer.fromColors(
-                  baseColor: Colors.grey.shade300,
-                  highlightColor: Colors.grey.shade100,
-                  child: Column(
-                    children: const [
-                      SizedBox(
-                        height: 100,
-                      ),
-                      SizedBox(
-                        height: 100,
-                      ),
-                      SizedBox(
-                        height: 100,
-                      ),
-                      SizedBox(
-                        height: 100,
-                      ),
-                    ],
-                  ),
-                );
+          // List<Coin> coinList = BlocProvider.of<CoinCubit>(context).coins;
+          //bool isLoading = BlocProvider.of<CoinCubit>(context).isLoading;
+          // print("ISLOADING : $isLoading");
+         return  StreamBuilder<dynamic>(
+              stream: service.streamCoins(),
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.waiting:
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  default:
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                           
+                            return CryptoCard(
+                                name: snapshot.data[index].name!,
+                                symbol: snapshot.data[index].symbol!,
+                                imageUrl: snapshot.data[index].imageUrl!,
+                                price: snapshot.data[index].price!);
+                          });
+                    } else {
+                      return const Center(
+                        child: Text("Something is wrong"),
+                      );
+                    }
+                }
+              });
+          return Container(
+            color: Colors.green,
+          );
         },
       ),
     );
