@@ -17,13 +17,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Coin Market',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            primarySwatch: Colors.amber,
-            primaryIconTheme: const IconThemeData(color: Colors.transparent),
-            appBarTheme: AppBarTheme(
-                color: HomeConsts.homeAppbarColor,
-                titleTextStyle: const TextStyle(color: Colors.white, fontSize: 22),
-                actionsIconTheme: const IconThemeData(color: Colors.white))),
+        theme: BaseThemeData(),
         home: BlocProvider(
           create: (context) => CoinCubit(
             RepositoryProvider.of<CryptoService>(context),
@@ -32,5 +26,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  ThemeData BaseThemeData() {
+    return ThemeData(
+          primarySwatch: Colors.amber,
+          primaryIconTheme: const IconThemeData(color: Colors.transparent),
+          appBarTheme: AppBarTheme(
+              color: HomeConsts.homeAppbarColor,
+              titleTextStyle: const TextStyle(color: Colors.white, fontSize: 22),
+              actionsIconTheme: const IconThemeData(color: Colors.white)));
   }
 }

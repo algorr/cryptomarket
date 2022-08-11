@@ -4,8 +4,6 @@ import 'package:cryptomarket/model/coin_model.dart';
 import 'package:http/http.dart' as http;
 
 class CryptoService {
-
-  
   //fetch data from api
   Future<List<Coin>?> fetchData() async {
     String baseUrl =
@@ -15,6 +13,7 @@ class CryptoService {
       final response = await http.get(Uri.parse(baseUrl));
 
       if (response.statusCode == 200) {
+        print(response.statusCode);
         var body = json.decode(response.body) as List;
         var coinList = body.map((e) => Coin.fromJson(e)).toList();
         return coinList;

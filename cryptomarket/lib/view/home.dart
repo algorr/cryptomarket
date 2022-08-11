@@ -4,6 +4,7 @@ import 'package:cryptomarket/viewmodel/cubit/coin_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/crypto_card.dart';
+import 'coin_detail_page.dart';
 
 class Home extends StatelessWidget {
   final CryptoService service;
@@ -23,6 +24,7 @@ class Home extends StatelessWidget {
           return StreamBuilder<dynamic>(
               stream: service.streamCoins(),
               builder: (context, snapshot) {
+               
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
                     return const Center(
@@ -33,11 +35,31 @@ class Home extends StatelessWidget {
                       return ListView.builder(
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
-                            return CryptoCard(
+                            return InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => CoinDetailPage(
+                                          coin: snapshot.data[index],
+                                        )));
+                              },
+                              child: CryptoCard(
                                 name: snapshot.data[index].name!,
                                 symbol: snapshot.data[index].symbol!,
                                 imageUrl: snapshot.data[index].imageUrl!,
-                                price: snapshot.data[index].price!);
+                                price: snapshot.data[index].price!,
+                                priceChange: double.parse(snapshot.data[index].oned.priceChange),
+                                icon: double.parse((snapshot.data[index].oned.priceChange)).roundToDouble() < (0)
+                                    ? const Icon(
+                                        Icons.arrow_circle_down_rounded,
+                                        color: Colors.red,
+                                      )
+                                    : const Icon(
+                                        Icons.arrow_circle_up_rounded,
+                                        color: Colors.green,
+                                      ),
+                                      
+                              ),
+                            );
                           });
                     } else {
                       return const Center(
@@ -61,7 +83,7 @@ class RefreshButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
-          BlocProvider.of<CoinCubit>(context).refreshCoins();
+          //BlocProvider.of<CoinCubit>(context).refreshCoins();
         },
         child: const Icon(Icons.refresh_rounded));
   }

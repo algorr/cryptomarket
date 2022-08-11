@@ -6,7 +6,11 @@ class CoinInitial extends CoinState {}
 
 class CoinLoadingState extends CoinState {}
 
-class CoinLoadedState extends CoinState {}
+class CoinLoadedState extends CoinState {
+  final List<Coin>? apiResult;
+
+  CoinLoadedState(this.apiResult);
+}
 
 class CoinErrorState extends CoinState {}
 

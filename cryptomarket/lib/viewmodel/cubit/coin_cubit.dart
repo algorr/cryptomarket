@@ -10,18 +10,20 @@ class CoinCubit extends Cubit<CoinState> {
   bool isLoading = false;
   CoinCubit(this.cryptoService) : super(CoinInitial());
 
+//Fetch All Coins From Api
   Future<List<Coin>?> fetchCoins() async {
     try {
       emit(CoinLoadingState());
       final coins = (await cryptoService.fetchData())!;
       if (coins.isNotEmpty) {
-        emit(CoinLoadedState());
+        emit(CoinLoadedState(coins));
       } else {
         emit(CoinErrorState());
       }
     } catch (e) {
       emit(CoinErrorState());
-      throw Exception();
+      print("HATA : $e");
+      
     }
     return null;
   }
@@ -44,6 +46,7 @@ class CoinCubit extends Cubit<CoinState> {
     return null;
   }
 
+//For service initialize to CryptoInitial
   Future<void> serviceInit() async {
     cryptoService.streamCoins();
     await fetchCoins();

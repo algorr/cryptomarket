@@ -3,18 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CryptoCard extends StatelessWidget {
-  CryptoCard({
+  const CryptoCard({
     Key? key,
     required this.name,
     required this.symbol,
     required this.imageUrl,
     required this.price,
+    required this.priceChange,
+    required this.icon
   }) : super(key: key);
 
-  String name;
-  String symbol;
-  String imageUrl;
-  double price;
+  final String name;
+  final String symbol;
+  final String imageUrl;
+  final double price;
+  final double priceChange;
+  final Icon icon;
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +118,17 @@ class CryptoCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  Row(children: [
+                    icon,
+                    Text(
+                    priceChange.toDouble().toString(),
+                    style: TextStyle(
+                      color: CryptoCardConsts.cardTextColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  ],)
                 ],
               ),
             ),
