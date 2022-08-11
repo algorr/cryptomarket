@@ -83,7 +83,7 @@ class RefreshButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
-          //BlocProvider.of<CoinCubit>(context).refreshCoins();
+          BlocProvider.of<CoinCubit>(context).refreshCoins();
         },
         child: const Icon(Icons.refresh_rounded));
   }
