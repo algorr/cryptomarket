@@ -13,7 +13,6 @@ class CoinDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isSvg = coin.imageUrl.endsWith('.svg');
-    Size size = MediaQuery.of(context).size;
     return BlocProvider(
       create: (context) => CoinCubit(CryptoService()),
       child: Scaffold(
@@ -66,10 +65,13 @@ class CoinDetailPage extends StatelessWidget {
                     width: 60,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: isSvg ? SvgPicture.network(coin.imageUrl) : Image.network(coin.imageUrl),
+                      child: isSvg
+                          ? SvgPicture.network(coin.imageUrl)
+                          : Image.network(coin.imageUrl),
                     ),
                   ),
-                )
+                ),
+                
               ],
             );
           },

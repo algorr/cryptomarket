@@ -1,4 +1,5 @@
 import 'package:cryptomarket/consts/home_consts.dart';
+import 'package:cryptomarket/packages/loading_bar.dart';
 import 'package:cryptomarket/service/crypto_service.dart';
 import 'package:cryptomarket/viewmodel/cubit/coin_cubit.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +25,10 @@ class Home extends StatelessWidget {
           return StreamBuilder<dynamic>(
               stream: service.streamCoins(),
               builder: (context, snapshot) {
-               
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: LoadingBar(),
                     );
                   default:
                     if (snapshot.hasData) {
@@ -47,8 +47,12 @@ class Home extends StatelessWidget {
                                 symbol: snapshot.data[index].symbol!,
                                 imageUrl: snapshot.data[index].imageUrl!,
                                 price: snapshot.data[index].price!,
-                                priceChange: double.parse(snapshot.data[index].oned.priceChange),
-                                icon: double.parse((snapshot.data[index].oned.priceChange)).roundToDouble() < (0)
+                                priceChange: double.parse(
+                                    snapshot.data[index].oned.priceChange),
+                                icon: double.parse((snapshot
+                                                .data[index].oned.priceChange))
+                                            .roundToDouble() <
+                                        (0)
                                     ? const Icon(
                                         Icons.arrow_circle_down_rounded,
                                         color: Colors.red,
@@ -57,7 +61,6 @@ class Home extends StatelessWidget {
                                         Icons.arrow_circle_up_rounded,
                                         color: Colors.green,
                                       ),
-                                      
                               ),
                             );
                           });

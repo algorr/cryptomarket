@@ -22,8 +22,6 @@ class CoinCubit extends Cubit<CoinState> {
       }
     } catch (e) {
       emit(CoinErrorState());
-      print("HATA : $e");
-      
     }
     return null;
   }

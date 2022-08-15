@@ -1,5 +1,5 @@
-import 'package:cryptomarket/consts/home_consts.dart';
 import 'package:cryptomarket/service/crypto_service.dart';
+import 'package:cryptomarket/theme/light_theme.dart';
 import 'package:cryptomarket/view/cubit_logic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Coin Market',
         debugShowCheckedModeBanner: false,
-        theme: BaseThemeData(),
+        theme: LightTheme().themeData,
         home: BlocProvider(
           create: (context) => CoinCubit(
             RepositoryProvider.of<CryptoService>(context),
@@ -26,15 +26,5 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  ThemeData BaseThemeData() {
-    return ThemeData(
-          primarySwatch: Colors.amber,
-          primaryIconTheme: const IconThemeData(color: Colors.transparent),
-          appBarTheme: AppBarTheme(
-              color: HomeConsts.homeAppbarColor,
-              titleTextStyle: const TextStyle(color: Colors.white, fontSize: 22),
-              actionsIconTheme: const IconThemeData(color: Colors.white)));
   }
 }

@@ -11,9 +11,7 @@ class CryptoService {
 
     try {
       final response = await http.get(Uri.parse(baseUrl));
-
       if (response.statusCode == 200) {
-        print(response.statusCode);
         var body = json.decode(response.body) as List;
         var coinList = body.map((e) => Coin.fromJson(e)).toList();
         return coinList;

@@ -43,10 +43,15 @@ dependencies:
   bloc: ^8.0.3
   equatable: ^2.0.3
 
-  #for svg files
+  # svg files
   flutter_svg: ^1.1.1+1
   shimmer: ^2.0.0
-  charts_flutter: ^0.12.0
+
+  # chart view of changing crypto value
+  font_awesome_flutter: ^10.1.0
+
+  #loading_bar
+  flutter_spinkit: ^5.1.0
   
 
 dev_dependencies:
