@@ -1,5 +1,5 @@
 import 'package:cryptomarket/service/crypto_service.dart';
-import 'package:cryptomarket/view/home.dart';
+import 'package:cryptomarket/view/home_page.dart';
 import 'package:cryptomarket/viewmodel/cubit/coin_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +30,7 @@ class _CubitLogicState extends State<CubitLogic> {
           return Home(service: CryptoService());
         }
         return Container(
-          color: Colors.red,
+          color: Colors.white,
         );
       },
     );
