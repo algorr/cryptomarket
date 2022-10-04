@@ -2,16 +2,19 @@
  
 CRYPTO MARKET with Bloc and Api
 
+# Design Pattern
+MVVM 
+
 *Also stream structure is added with Stream & Future concept
 
-State Management:
+# State Management:
 -Bloc(cubit)
 
-Packages:
+# Packages:
 -http
 -flutter_bloc
 -bloc
 -flutter_svg
 
-Api: 
+# Api: 
 -Nomics.com/api
