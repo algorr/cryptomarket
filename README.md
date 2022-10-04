@@ -2,6 +2,9 @@
  
 CRYPTO MARKET with Bloc and Api
 
+# Design Pattern
+MVVM 
+
 *Also stream structure is added with Stream & Future concept
 
 # State Management:
